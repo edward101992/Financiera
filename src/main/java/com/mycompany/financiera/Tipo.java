@@ -4,20 +4,16 @@
  * and open the template in the editor.
  */
 package com.mycompany.financiera;
+
 /**
  *
  * @author SuperUs
  */
-public class Main {
+public class Tipo {
+    private String descripcion;
+    private String caracteristica;
     
+    public void agregarTipo(){
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Principal principal = new Principal();
-        principal.menu();
-        
     }
-    
 }
