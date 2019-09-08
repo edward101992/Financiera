@@ -108,6 +108,7 @@ public class Persona implements Serializable{
         System.out.println("3. Lista de Personas");
         System.out.println("5. ATRS");
         elije=sc.nextLine();
+        
            switch(elije){
             case "1":
                 registrarPersona();
@@ -128,6 +129,7 @@ public class Persona implements Serializable{
     }  
     public void registrarPersona() throws IOException{
         int contador = 0; 
+        boolean registrado = false;
         System.out.println("Registrar Personas");
         System.out.println("Digite nombre: ");
         nombre = sc.nextLine();
@@ -137,16 +139,28 @@ public class Persona implements Serializable{
         edad = sc.nextLine();
         System.out.println("Digite Genero");
         genero = sc.nextLine();
-        contador = (Principal.listapersona.size());
-        ficherovaciar();
-        Principal.listapersona.add(new ArrayList<String>());
-        Principal.listapersona.get(contador).add(nombre);
-        Principal.listapersona.get(contador).add(cedula);
-        Principal.listapersona.get(contador).add(edad);
-        Principal.listapersona.get(contador).add(genero);
-        System.out.println("Usuario Agregado"); 
-        ficheroescribir();
-        menu();
+        for(int i=0;i<Principal.listapersona.size();i++){
+            if(Principal.listapersona.get(i).get(1).equals(cedula)){
+               registrado=true;
+             }
+        }
+        System.out.println("Registradoo" + registrado);
+        if(registrado){
+            System.out.println("El usuario ya esta registrado");
+            menu();
+        }else{
+            contador = (Principal.listapersona.size());
+            ficherovaciar();
+            Principal.listapersona.add(new ArrayList<String>());
+            Principal.listapersona.get(contador).add(nombre);
+            Principal.listapersona.get(contador).add(cedula);
+            Principal.listapersona.get(contador).add(edad);
+            Principal.listapersona.get(contador).add(genero);
+            System.out.println("Usuario Agregado"); 
+            ficheroescribir();
+            menu();
+        }
+ 
     }
 
     public void editarPersona() throws IOException{
@@ -173,8 +187,7 @@ public class Persona implements Serializable{
                      }       
                 }
         if(!encontro)
-            System.out.println("Usuario no Registrado");
-        
+            System.out.println("Usuario no Registrado");        
         menu();
     }
     
@@ -187,14 +200,13 @@ public class Persona implements Serializable{
             System.out.println("Genero : " + Principal.listapersona.get(i).get(3));        
             for(int j=0;j<Principal.listaantecedente.size();j++){
                 if((Principal.listaantecedente.get(j).get(1).equals(Principal.listapersona.get(i).get(1)))){
-                    System.out.println("Antecedente  " + (j+1) + "  Registrado");
-                    System.out.println("Codigo Antecedente: " + Principal.listaantecedente.get(j).get(0)+ "  Fecha : " + Principal.listaantecedente.get(j).get(2) + "  Descripcion : " + Principal.listaantecedente.get(j).get(3) + "  Estado : " + Principal.listaantecedente.get(j).get(4));
                     System.out.println("Cedula Persona : " + Principal.listaantecedente.get(j).get(1));
+                    System.out.println("****** Antecedente  " + (j+1) + "  Registrado");
+                    System.out.println("Codigo Antecedente: " + Principal.listaantecedente.get(j).get(0)+ "  Fecha : " + Principal.listaantecedente.get(j).get(2) + "  Descripcion : " + Principal.listaantecedente.get(j).get(3) + "  Estado : " + Principal.listaantecedente.get(j).get(4));                    
                            for(int k=0;k<Principal.listatipo.size();k++){
                                 if(Principal.listatipo.get(k).get(0).equals(Principal.listaantecedente.get(j).get(0))){
-                                    System.out.println("Tipo Antecedente " + (k+1) + "Registraddo");
-                                    System.out.println("Descripcion :" + Principal.listatipo.get(k).get(1));
-                                    System.out.println("Nombre Caracteristico :" + Principal.listatipo.get(k).get(2));
+                                    System.out.println("*** Tipo Antecedente " + (k+1) + "  Registraddo");
+                                    System.out.println("Descripcion :" + Principal.listatipo.get(k).get(1) + "  Nombre Caracteristico :" + Principal.listatipo.get(k).get(2));
                                 }
                             }
                 }
