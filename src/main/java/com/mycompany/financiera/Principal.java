@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package com.mycompany.financiera;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,9 +18,10 @@ public class Principal {
     Tipo tipo = new Tipo();
     Scanner sc = new Scanner(System.in);
     public static ArrayList<ArrayList<String>> listapersona= new ArrayList();
+    public static ArrayList<ArrayList<String>> listaantecedente = new ArrayList();
+    public static ArrayList<ArrayList<String>> listatipo = new ArrayList();
 
-
-    public void menu(){ 
+    public void menu() throws IOException{ 
         String elije ="";
         System.out.println("1. Persona");
         System.out.println("2. Antecedentes");
@@ -40,6 +41,7 @@ public class Principal {
                 break;
             }
     }
+
       
 }
 

@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package com.mycompany.financiera;
+
+import java.io.IOException;
+
 /**
  *
  * @author SuperUs
@@ -14,10 +17,9 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Principal principal = new Principal();
         principal.menu();
-        
     }
     
 }
