@@ -125,7 +125,7 @@ public class Tipo implements Serializable{
         }
         if(registrado){
             System.out.println("El tipo de antecedente ya esta registrado");
-            menu();
+            subMenu();
         }else{
             if((estado.equalsIgnoreCase("p"))||((estado.equalsIgnoreCase("n")))){
             contador = (Principal.listatipo.size());
@@ -192,7 +192,7 @@ public class Tipo implements Serializable{
         codigotipo = sc.nextLine();
         ArrayList<String> listmod = new ArrayList<String>();
                for(int i=0;i<Principal.listatipo.size();i++){ 
-                     if(Principal.listatipo.get(i).get(1).equals(codigotipo)){
+                     if(Principal.listatipo.get(i).get(1).equals(codigotipo) &&  Principal.listatipo.get(i).get(4).equalsIgnoreCase("n")){                        
                         ficherovaciar();
                         listmod.add(""); 
                         listmod.add(""); 
@@ -206,7 +206,7 @@ public class Tipo implements Serializable{
                      }       
                 }
         if(!encontro){
-            System.out.println("Tipo de antecedente no Registrado"); 
+            System.out.println("Tipo de antecedente no Registrado o Antecedente Positivo"); 
         }            
         subMenu();
     }

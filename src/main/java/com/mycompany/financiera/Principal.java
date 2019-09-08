@@ -40,8 +40,6 @@ public class Principal {
                 System.out.println("Opcion Incorrecta");
                 break;
             }
-    }
-
-      
+    }     
 }
 
