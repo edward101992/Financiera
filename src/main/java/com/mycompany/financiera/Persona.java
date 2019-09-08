@@ -107,9 +107,8 @@ public class Persona implements Serializable{
         System.out.println("1. Registrar Persona");
         System.out.println("2. Editar Persona");
         System.out.println("3. Lista de Personas");
-        System.out.println("5. ATRS");
-        elije=sc.nextLine();
-        
+        System.out.println("0. ATRAS");
+        elije=sc.nextLine();     
            switch(elije){
             case "1":
                 registrarPersona();
@@ -120,7 +119,7 @@ public class Persona implements Serializable{
             case "3":
                 listaPersona();
                 break;
-             case "5":
+             case "0":
                 principal.menu();
                 break;
             default:
@@ -161,7 +160,6 @@ public class Persona implements Serializable{
             ficheroescribir();
             menu();
         }
- 
     }
  
     public void editarPersona() throws IOException{
@@ -241,9 +239,7 @@ public class Persona implements Serializable{
       catch(Exception e){
          e.printStackTrace();
       }finally{
-         // En el finally cerramos el fichero, para asegurarnos
-         // que se cierra tanto si todo va bien como si salta 
-         // una excepcion.
+         // En el finally se cierra el fichero
          try{                    
             if( null != fr ){   
                fr.close();     
@@ -273,8 +269,7 @@ public class Persona implements Serializable{
             e.printStackTrace();
         } finally {
            try {
-           // Nuevamente aprovechamos el finally para 
-           // asegurarnos que se cierra el fichero.
+           // Nuevamente aprovechamos el finally para asegurarnos que se cierra el fichero.
            if (null != fichero)
               fichero.close();
            } catch (Exception e2) {

@@ -103,9 +103,8 @@ public class Tipo implements Serializable{
         }
     }
     
-    public void menu() throws IOException{  
-      
-        int contador= 0;
+    public void menu() throws IOException{       
+  
         boolean registrado = false;
         System.out.println("**********   Tipo Antecedentes   *********");
         System.out.println("Digite codigo Antecedente");
@@ -127,6 +126,12 @@ public class Tipo implements Serializable{
             System.out.println("El tipo de antecedente ya esta registrado");
             subMenu();
         }else{
+            agregarDatos();
+        }    
+    }
+    
+    public void agregarDatos() throws IOException{
+            int contador= 0;
             if((estado.equalsIgnoreCase("p"))||((estado.equalsIgnoreCase("n")))){
             contador = (Principal.listatipo.size());
             ficherovaciar();
@@ -143,9 +148,7 @@ public class Tipo implements Serializable{
             System.out.println("Debe Ingresar estado Positivo o Negativo");   
             subMenu();      
             }
-        }    
     }
-      
     public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
@@ -153,13 +156,9 @@ public class Tipo implements Serializable{
       int contador = 0;
       Principal.listatipo.clear();
       try {
-         // Apertura del fichero y creacion de BufferedReader para poder
-         // hacer una lectura comoda (disponer del metodo readLine()).
          archivo = new File ("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Tipo.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
-
-         // Lectura del fichero
          String linea;
          while((linea=br.readLine())!=null){
              Principal.listatipo.add(new ArrayList<String>());
@@ -173,9 +172,6 @@ public class Tipo implements Serializable{
       catch(Exception e){
          e.printStackTrace();
       }finally{
-         // En el finally cerramos el fichero, para asegurarnos
-         // que se cierra tanto si todo va bien como si salta 
-         // una excepcion.
          try{                    
             if( null != fr ){   
                fr.close();     
@@ -231,8 +227,6 @@ public class Tipo implements Serializable{
             e.printStackTrace();
         } finally {
            try {
-           // Nuevamente aprovechamos el finally para 
-           // asegurarnos que se cierra el fichero.
            if (null != fichero)
               fichero.close();
            } catch (Exception e2) {

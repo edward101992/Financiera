@@ -76,27 +76,22 @@ public class Antecedente implements Serializable{
         String elije="";
         System.out.println("**********   Antecedentes   *********");
         System.out.println("1. Agregar Antecedente");
-        System.out.println("2. Eliminar Antecedente");
-        System.out.println("3. ATRAS");
+        System.out.println("0. ATRAS");
         elije = sc.nextLine();
         switch(elije){
             case "1":
                 agregarAntecedente();
                 break;
-            case "2":
-                //eliminarAntecedente();
-                break;
-            case "3":
+            case "0":
                 principal.menu();
                 break;
             default:
                 System.out.println("Opcion incorrecta");
-                break;
-                
+                break;              
         }
     }
+    
     public void agregarAntecedente() throws IOException{
-        int contador = 0;
         boolean registrado = false;
         System.out.println("Digite Documento de Persona: ");
         persona = sc.nextLine();
@@ -115,7 +110,13 @@ public class Antecedente implements Serializable{
             System.out.println("Antecedente ya esta registrado");
             menu();
         }else{
-            contador = (Principal.listaantecedente.size());
+            agregarDatos();
+        }         
+    }   
+    
+    public void agregarDatos() throws IOException{
+            int contador =0;
+           contador = (Principal.listaantecedente.size());
             ficherovaciar();
             Principal.listaantecedente.add(new ArrayList<String>());
             Principal.listaantecedente.get(contador).add(codigo);
@@ -125,9 +126,7 @@ public class Antecedente implements Serializable{
             System.out.println("Antecedente Agregado a la persona: " + persona);
             ficheroescribir();
             menu();
-        }         
-    }   
-
+    }
     
    public  void ficheroleer() {
       File archivo = null;
@@ -182,7 +181,6 @@ public class Antecedente implements Serializable{
                 pw.println(Principal.listaantecedente.get(i).get(1));
                 pw.println(Principal.listaantecedente.get(i).get(2));
                 pw.println(Principal.listaantecedente.get(i).get(3)); 
-           //     pw.println(Principal.listaantecedente.get(i).get(4));
                 pw.println("."); 
             } 
         } catch (Exception e) {
