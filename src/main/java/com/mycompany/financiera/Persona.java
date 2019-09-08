@@ -19,6 +19,7 @@ import java.io.InputStreamReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Random;
 
 /**
  *
@@ -127,6 +128,7 @@ public class Persona implements Serializable{
                 break;
         }
     }  
+     
     public void registrarPersona() throws IOException{
         int contador = 0; 
         boolean registrado = false;
@@ -144,7 +146,6 @@ public class Persona implements Serializable{
                registrado=true;
              }
         }
-        System.out.println("Registradoo" + registrado);
         if(registrado){
             System.out.println("El usuario ya esta registrado");
             menu();
@@ -162,7 +163,7 @@ public class Persona implements Serializable{
         }
  
     }
-
+ 
     public void editarPersona() throws IOException{
         boolean encontro = false;
         System.out.println("Digite Documento");
@@ -200,21 +201,19 @@ public class Persona implements Serializable{
             System.out.println("Genero : " + Principal.listapersona.get(i).get(3));        
             for(int j=0;j<Principal.listaantecedente.size();j++){
                 if((Principal.listaantecedente.get(j).get(1).equals(Principal.listapersona.get(i).get(1)))){
-                    System.out.println("Cedula Persona : " + Principal.listaantecedente.get(j).get(1));
                     System.out.println("****** Antecedente  " + (j+1) + "  Registrado");
-                    System.out.println("Codigo Antecedente: " + Principal.listaantecedente.get(j).get(0)+ "  Fecha : " + Principal.listaantecedente.get(j).get(2) + "  Descripcion : " + Principal.listaantecedente.get(j).get(3) + "  Estado : " + Principal.listaantecedente.get(j).get(4));                    
+                    System.out.println("Codigo Antecedente: " + Principal.listaantecedente.get(j).get(0)+ "  Fecha : " + Principal.listaantecedente.get(j).get(2) + "  Descripcion : " + Principal.listaantecedente.get(j).get(3));                    
                            for(int k=0;k<Principal.listatipo.size();k++){
                                 if(Principal.listatipo.get(k).get(0).equals(Principal.listaantecedente.get(j).get(0))){
                                     System.out.println("*** Tipo Antecedente " + (k+1) + "  Registraddo");
-                                    System.out.println("Descripcion :" + Principal.listatipo.get(k).get(1) + "  Nombre Caracteristico :" + Principal.listatipo.get(k).get(2));
+                                    System.out.println("Codigo tipo Descripcion:  "+ Principal.listatipo.get(k).get(1) + "  Descripcion :" + Principal.listatipo.get(k).get(2) + "  Nombre Caracteristico :" + Principal.listatipo.get(k).get(3) + "  Estado : " + Principal.listatipo.get(k).get(4));
                                 }
                             }
                 }
             }
         }        
          menu();
-    }
-     
+    }   
     public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
@@ -224,7 +223,7 @@ public class Persona implements Serializable{
       try {
          // Apertura del fichero y creacion de BufferedReader para poder
          // hacer una lectura comoda (disponer del metodo readLine()).
-         archivo = new File ("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Archivo.txt");
+         archivo = new File ("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Persona.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
 
@@ -260,7 +259,7 @@ public class Persona implements Serializable{
         PrintWriter pw = null;
         try
         {
-            fichero = new FileWriter("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Archivo.txt");
+            fichero = new FileWriter("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Persona.txt");
             pw = new PrintWriter(fichero);
             
             for(int i=0;i<Principal.listapersona.size();i++){
@@ -286,7 +285,7 @@ public class Persona implements Serializable{
     
     public void ficherovaciar(){
         File fichero = null;
-        fichero = new File("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Archivo.txt");
+        fichero = new File("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Persona.txt");
         fichero.delete();
         try
         {

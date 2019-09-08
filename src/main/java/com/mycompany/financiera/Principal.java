@@ -35,7 +35,7 @@ public class Principal {
                 antecedente.menu();
                 break;
             case "3":
-                tipo.menu();
+                tipo.subMenu();
             default:
                 System.out.println("Opcion Incorrecta");
                 break;

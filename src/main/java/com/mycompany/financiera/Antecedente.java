@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import java.util.Scanner;
 /**
  *
@@ -25,7 +26,6 @@ public class Antecedente implements Serializable{
     private String codigo;
     private String fecha = "dd/MM/yyyy";
     private String descripcion;
-    private String estado;
     private String persona;
 
     public Scanner getSc() {
@@ -60,13 +60,6 @@ public class Antecedente implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     
     public String getPersona() {
         return persona;
@@ -91,7 +84,7 @@ public class Antecedente implements Serializable{
                 agregarAntecedente();
                 break;
             case "2":
-                eliminarAntecedente();
+                //eliminarAntecedente();
                 break;
             case "3":
                 principal.menu();
@@ -104,6 +97,7 @@ public class Antecedente implements Serializable{
     }
     public void agregarAntecedente() throws IOException{
         int contador = 0;
+        boolean registrado = false;
         System.out.println("Digite Documento de Persona: ");
         persona = sc.nextLine();
         System.out.println("Digite codigo de Antecedente: ");
@@ -112,9 +106,15 @@ public class Antecedente implements Serializable{
         fecha=sc.nextLine();
         System.out.println("Digite Descripcion :");
         descripcion = sc.nextLine();
-        System.out.println("Digite Estado P-N :");
-        estado = sc.nextLine();
-        if((estado.equalsIgnoreCase("p"))||((estado.equalsIgnoreCase("n")))){
+        for(int i=0;i<Principal.listaantecedente.size();i++){
+            if(Principal.listaantecedente.get(i).get(1).equals(codigo)){
+               registrado=true;
+             }
+        }
+        if(registrado){
+            System.out.println("Antecedente ya esta registrado");
+            menu();
+        }else{
             contador = (Principal.listaantecedente.size());
             ficherovaciar();
             Principal.listaantecedente.add(new ArrayList<String>());
@@ -122,26 +122,12 @@ public class Antecedente implements Serializable{
             Principal.listaantecedente.get(contador).add(persona);
             Principal.listaantecedente.get(contador).add(fecha);
             Principal.listaantecedente.get(contador).add(descripcion);
-            Principal.listaantecedente.get(contador).add(estado);
             System.out.println("Antecedente Agregado a la persona: " + persona);
             ficheroescribir();
             menu();
-        }
-        else
-        {
-            System.out.println("Debe Ingresar estado Positivo o Negativo");   
-            menu();
-        }
-           
+        }         
     }   
-    
-    public void eliminarAntecedente(){
-        System.out.println("Digite Documento de Persona: ");
-        System.out.println("Digite codigo de Antecedente: ");
-        codigo = sc.nextLine();
-    
-    }
-    
+
     
    public  void ficheroleer() {
       File archivo = null;
@@ -160,7 +146,7 @@ public class Antecedente implements Serializable{
          String linea;
          while((linea=br.readLine())!=null){
              Principal.listaantecedente.add(new ArrayList<String>());
-             for(int i=0;i<5; i++){
+             for(int i=0;i<4; i++){
                 Principal.listaantecedente.get(contador).add(linea);
                 linea=br.readLine();
              }
@@ -196,7 +182,7 @@ public class Antecedente implements Serializable{
                 pw.println(Principal.listaantecedente.get(i).get(1));
                 pw.println(Principal.listaantecedente.get(i).get(2));
                 pw.println(Principal.listaantecedente.get(i).get(3)); 
-                pw.println(Principal.listaantecedente.get(i).get(4));
+           //     pw.println(Principal.listaantecedente.get(i).get(4));
                 pw.println("."); 
             } 
         } catch (Exception e) {

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -24,8 +25,26 @@ public class Tipo implements Serializable{
     private String descripcion;
     private String nomcaracteristico;
     private String codigoantecedente;
+    private String codigotipo;
+    private String estado;
 
     
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getCodigotipo() {
+        return codigotipo;
+    }
+
+    public void setCodigotipo(String codigotipo) {
+        this.codigotipo = codigotipo;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public Tipo() {
     }
     
@@ -61,17 +80,21 @@ public class Tipo implements Serializable{
     }
     
     public void subMenu() throws IOException{
-       
+        ficheroleer();
         Principal princ = new Principal();
         String elije ="";
         System.out.println("1. Agregar Tipo Antecedente");
-        System.out.println("2. Atras");
+        System.out.println("2. Eliminar Tipo Antecedente");
+        System.out.println("0. Atras");
         elije = sc.nextLine();
         switch(elije){
             case "1":
                 menu();
                 break;
             case "2":
+                eliminarAntecedente();
+                break;
+            case "0":
                 princ.menu();
                 break;
             default:
@@ -81,29 +104,48 @@ public class Tipo implements Serializable{
     }
     
     public void menu() throws IOException{  
-        ficheroleer();
+      
         int contador= 0;
+        boolean registrado = false;
         System.out.println("**********   Tipo Antecedentes   *********");
         System.out.println("Digite codigo Antecedente");
         codigoantecedente = sc.nextLine();
+        System.out.println("Digite codigo Tipo Antecedente");
+        codigotipo = sc.nextLine();
         System.out.println("Digite Descripcion Tipo antecedente: ");
         descripcion = sc.nextLine();
         System.out.println("Digite nombre Caracteristico Tipo antecedente: ");
         nomcaracteristico=sc.nextLine();
-
-        contador = (Principal.listatipo.size());
-        ficherovaciar();
-        Principal.listatipo.add(new ArrayList<String>());
-        Principal.listatipo.get(contador).add(codigoantecedente);
-        Principal.listatipo.get(contador).add(descripcion);
-        Principal.listatipo.get(contador).add(nomcaracteristico);;
-        System.out.println("Tipo de Antecedente agregado");
-        ficheroescribir();
-        subMenu();
-
+        System.out.println("Digite Estado P-N :");
+        estado = sc.nextLine();
+        for(int i=0;i<Principal.listatipo.size();i++){
+            if(Principal.listatipo.get(i).get(1).equals(codigotipo)){
+               registrado=true;
+             }
+        }
+        if(registrado){
+            System.out.println("El tipo de antecedente ya esta registrado");
+            menu();
+        }else{
+            if((estado.equalsIgnoreCase("p"))||((estado.equalsIgnoreCase("n")))){
+            contador = (Principal.listatipo.size());
+            ficherovaciar();
+            Principal.listatipo.add(new ArrayList<String>());
+            Principal.listatipo.get(contador).add(codigoantecedente);
+            Principal.listatipo.get(contador).add(codigotipo);
+            Principal.listatipo.get(contador).add(descripcion);
+            Principal.listatipo.get(contador).add(nomcaracteristico);
+            Principal.listatipo.get(contador).add(estado);
+            System.out.println("Tipo de Antecedente agregado");
+            ficheroescribir();
+            subMenu();     
+            }else{
+            System.out.println("Debe Ingresar estado Positivo o Negativo");   
+            subMenu();      
+            }
+        }    
     }
-    
-    
+      
     public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
@@ -121,7 +163,7 @@ public class Tipo implements Serializable{
          String linea;
          while((linea=br.readLine())!=null){
              Principal.listatipo.add(new ArrayList<String>());
-             for(int i=0;i<3; i++){
+             for(int i=0;i<5; i++){
                 Principal.listatipo.get(contador).add(linea);
                 linea=br.readLine();
              }
@@ -143,6 +185,31 @@ public class Tipo implements Serializable{
          }
       }
    }
+ 
+    public void eliminarAntecedente() throws IOException{
+        boolean encontro = false;
+        System.out.println("Digite codigo tipo de antecedente");
+        codigotipo = sc.nextLine();
+        ArrayList<String> listmod = new ArrayList<String>();
+               for(int i=0;i<Principal.listatipo.size();i++){ 
+                     if(Principal.listatipo.get(i).get(1).equals(codigotipo)){
+                        ficherovaciar();
+                        listmod.add(""); 
+                        listmod.add(""); 
+                        listmod.add("");
+                        listmod.add("");
+                        listmod.add("");
+                        Principal.listatipo.set(i, listmod);
+                        encontro= true;
+                         System.out.println("Entro al forrrr");
+                        ficheroescribir();
+                     }       
+                }
+        if(!encontro){
+            System.out.println("Tipo de antecedente no Registrado"); 
+        }            
+        subMenu();
+    }
     
     public void ficheroescribir(){
         FileWriter fichero = null;
@@ -155,7 +222,9 @@ public class Tipo implements Serializable{
             for(int i=0;i<Principal.listatipo.size();i++){
                 pw.println(Principal.listatipo.get(i).get(0));
                 pw.println(Principal.listatipo.get(i).get(1));
-                pw.println(Principal.listatipo.get(i).get(2)); 
+                pw.println(Principal.listatipo.get(i).get(2));
+                pw.println(Principal.listatipo.get(i).get(3));
+                pw.println(Principal.listatipo.get(i).get(4));
                 pw.println("."); 
             } 
         } catch (Exception e) {

@@ -1,0 +1,14 @@
+Edward
+100
+26
+mas
+.
+Juan
+200
+33
+mas
+.
+Laura
+300
+12
+fem
