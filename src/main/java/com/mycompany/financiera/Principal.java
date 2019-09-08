@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.mycompany.financiera;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -11,11 +13,13 @@ import java.util.Scanner;
  * @author SuperUs
  */
 public class Principal {
-    Scanner sc = new Scanner(System.in);
     Persona persona = new Persona();
     Antecedente antecedente = new Antecedente();
     Tipo tipo = new Tipo();
-    
+    Scanner sc = new Scanner(System.in);
+    public static ArrayList<ArrayList<String>> listapersona= new ArrayList();
+
+
     public void menu(){ 
         String elije ="";
         System.out.println("1. Persona");
@@ -24,16 +28,18 @@ public class Principal {
         elije = sc.nextLine();           
         switch (elije) {        
             case "1":
-                persona.menu();
+               persona.menu();
                 break;
             case "2":
                 antecedente.menu();
                 break;
             case "3":
-                antecedente.agregarAntecedente();
+                tipo.menu();
             default:
                 System.out.println("Opcion Incorrecta");
                 break;
             }
-    }  
+    }
+      
 }
+

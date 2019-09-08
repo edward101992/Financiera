@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 package com.mycompany.financiera;
-
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  *
  * @author SuperUs
  */
-public class Persona {
-    Antecedente antecedente = new Antecedente();
+public class Persona implements Serializable{
     Scanner sc = new Scanner(System.in);
     private String nombre;
     private String cedula;
@@ -81,13 +81,14 @@ public class Persona {
     public Persona() {
     }
     
-    public void menu(){
+     public void menu(){
         String elije="";
+        System.out.println("**********   Persona   *********");
         System.out.println("1. Registrar Persona");
         System.out.println("2. Editar Persona");
         System.out.println("3. Ver reporte de persona");
         elije=sc.nextLine();
-        switch(elije){
+           switch(elije){
             case "1":
                 registrarPersona();
                 break;
@@ -95,14 +96,16 @@ public class Persona {
                 editarPersona();
                 break;
             case "3":
-                verReporte();
+                verAntecedente();
                 break;
             default:
                 System.out.println("Opcion Invalida");
                 break;
         }
     }
+     
     public void registrarPersona(){
+        int contador = 0;
         System.out.println("Registrar Personas");
         System.out.println("Digite nombre: ");
         nombre = sc.nextLine();
@@ -112,18 +115,22 @@ public class Persona {
         edad = sc.nextLine();
         System.out.println("Digite Genero");
         genero = sc.nextLine();
-        menu();
+        Principal.listapersona.add(new ArrayList<String>());
+        contador = (Principal.listapersona.size());
+        Principal.listapersona.get(contador).add(nombre);
+        Principal.listapersona.get(contador).add(cedula);
+        Principal.listapersona.get(contador).add(edad);
+        Principal.listapersona.get(contador).add(genero);
     }
     
     public void editarPersona(){
         System.out.println("Digite Documento");
         cedula = sc.nextLine();
-        menu();
     }
-    public void verReporte(){
+    
+    public void verAntecedente(){
         System.out.println("Digite Documento para ver antecedentes");
-        sc.nextLine(); 
-       
+        sc.nextLine();      
     }
      
 }

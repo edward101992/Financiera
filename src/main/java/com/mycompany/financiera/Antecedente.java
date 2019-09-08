@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.financiera;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,8 +13,9 @@ import java.util.Scanner;
  *
  * @author SuperUs
  */
-public class Antecedente {
+public class Antecedente implements Serializable{
     Scanner sc = new Scanner(System.in);
+    Persona persona = new Persona();
     private String codigo;
     private String fecha = "dd/MM/yyyy";
     private String descripcion;
