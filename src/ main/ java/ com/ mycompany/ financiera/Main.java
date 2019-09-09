@@ -6,10 +6,10 @@
 package com.mycompany.financiera;
 
 import java.io.IOException;
-
 /**
  *
- * @author SuperUs
+ * @author Edward Ramos
+ * @author Victor Preciado
  */
 public class Main {
     
