@@ -18,58 +18,98 @@ import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 /**
- *
- * @author SuperUs
+ *  Clase Antecedente Ingreso de informacion
+ * @author Edward Ramos
+ * @author Victor Preciado
  */
 public class Antecedente implements Serializable{
+     /**
+     * variable codigo guarda codigo de antecedente
+     * variable fecha guarda la fecha del antecedente
+     * variable descripcion guarda descriocion del antecedente
+     * variable persona guarda antecedentes
+     */
     Scanner sc = new Scanner(System.in);
     private String codigo;
     private String fecha = "dd/MM/yyyy";
     private String descripcion;
     private String persona;
-
+     /**
+     * get variable sc
+     * @return sc
+     */
     public Scanner getSc() {
         return sc;
     }
-
+     /**
+     * set variable sc
+     * @param sc 
+     */
     public void setSc(Scanner sc) {
         this.sc = sc;
     }
-
+     /**
+     * get variable codigo
+     * @return codigo
+     */
     public String getCodigo() {
         return codigo;
     }
-
+     /**
+     * set variable codigo
+     * @param codigo 
+     */
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
-
+     /**
+     * get variable fecha
+     * @return fecha
+     */
     public String getFecha() {
         return fecha;
     }
-
+     /**
+     * set variable fecha
+     * @param fecha
+     */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-
+      /**
+     * get variable descripcion
+     * @return descripcion
+     */
     public String getDescripcion() {
         return descripcion;
     }
-
+     /**
+    * set variable descripcion
+    * @param descripcion 
+    */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+     /**
+      * get variable persona
+      * @return persona
+      */
     
     public String getPersona() {
         return persona;
     }
-
+     /**
+     * set variable persona
+     * @param persona 
+     */
     public void setPersona(String persona) {
         this.persona = persona;
     }
 
-    
+     /**
+     * Metodo menu da la opcion de agregar antecedente 
+     * también vuelve a menu principal
+     */
     public void menu() throws IOException{ 
         ficheroleer();
         Principal principal = new Principal();
@@ -90,7 +130,10 @@ public class Antecedente implements Serializable{
                 break;              
         }
     }
-    
+     /**
+     * Metodo agregarAntecedente en el cual el usuario digita los datos
+     * y compruba el registro
+     */
     public void agregarAntecedente() throws IOException{
         boolean registrado = false;
         System.out.println("Digite Documento de Persona: ");
@@ -113,7 +156,10 @@ public class Antecedente implements Serializable{
             agregarDatos();
         }         
     }   
-    
+      /**
+     * Metodo agregarDatos en este metodo el antecedente
+     * es agregado a la persona
+     */
     public void agregarDatos() throws IOException{
             int contador =0;
            contador = (Principal.listaantecedente.size());
@@ -127,7 +173,13 @@ public class Antecedente implements Serializable{
             ficheroescribir();
             menu();
     }
-    
+       /**
+     * Metodo ficheroleer en el cual se crea el archivo
+     * En el finally cerramos el fichero, para asegurarnos
+     * que se cierra tanto si todo va bien como si salta 
+     * una excepcion.
+     * es agregado a la persona
+     */
    public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
@@ -135,13 +187,12 @@ public class Antecedente implements Serializable{
       int contador = 0;
       Principal.listaantecedente.clear();
       try {
-         // Apertura del fichero y creacion de BufferedReader para poder
-         // hacer una lectura comoda (disponer del metodo readLine()).
+       
          archivo = new File ("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Antecedente.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
 
-         // Lectura del fichero
+      
          String linea;
          while((linea=br.readLine())!=null){
              Principal.listaantecedente.add(new ArrayList<String>());
@@ -155,9 +206,7 @@ public class Antecedente implements Serializable{
       catch(Exception e){
          e.printStackTrace();
       }finally{
-         // En el finally cerramos el fichero, para asegurarnos
-         // que se cierra tanto si todo va bien como si salta 
-         // una excepcion.
+         
          try{                    
             if( null != fr ){   
                fr.close();     
@@ -187,8 +236,7 @@ public class Antecedente implements Serializable{
             e.printStackTrace();
         } finally {
            try {
-           // Nuevamente aprovechamos el finally para 
-           // asegurarnos que se cierra el fichero.
+           
            if (null != fichero)
               fichero.close();
            } catch (Exception e2) {
@@ -196,7 +244,10 @@ public class Antecedente implements Serializable{
            }
         }
     }
-       
+      /**
+     * Metodo ficherovaciar en este metodo el fichero 
+     *quedara vacio y se creara un nuevo archivo
+     */
     public void ficherovaciar(){
         File fichero = null;
         fichero = new File("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Antecedente.txt");
