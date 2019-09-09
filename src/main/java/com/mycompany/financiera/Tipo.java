@@ -104,6 +104,7 @@ public class Tipo implements Serializable{
     }
     
     public void menu() throws IOException{       
+  
         boolean registrado = false;
         System.out.println("**********   Tipo Antecedentes   *********");
         System.out.println("Digite codigo Antecedente");
@@ -125,24 +126,8 @@ public class Tipo implements Serializable{
             System.out.println("El tipo de antecedente ya esta registrado");
             subMenu();
         }else{
-            verificaAntecedente();
-            
-        }      
-    }
-     
-    public void verificaAntecedente() throws IOException{
-        boolean registradoA = false;
-        for(int j=0;j<Principal.listaantecedente.size();j++){
-            if(Principal.listaantecedente.get(j).get(0).equals(codigoantecedente)){
-                  registradoA = true;
-            }
-        }
-        if(registradoA){
-            System.out.println("El  antecedente ya esta registrado");
-            subMenu();
-        }else{
             agregarDatos();
-        }
+        }    
     }
     
     public void agregarDatos() throws IOException{
