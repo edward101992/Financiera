@@ -17,10 +17,22 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- *
- * @author SuperUs
+ *  Clase Tipo implementa Serializable en la clase tipo 
+ *  para serializar el archivo
+ * @author Edward Ramos
+ * @author Victor Preciado
  */
 public class Tipo implements Serializable{
+      /**
+     * variable descripcion contiene la descripcion de la persona
+     * variable nomcaracteristico guarda el nombre caracteristico del 
+     * antecedente
+     * variable codigoantecedente guarda el codigo del tipo 
+     * de antecedente
+     * variable codigotipo guarda el codigo de antecedente
+     * variable estado guarda el estado de la persona
+     * positivo o negativo
+     */
     Scanner sc = new Scanner(System.in);
     private String descripcion;
     private String nomcaracteristico;
@@ -28,7 +40,10 @@ public class Tipo implements Serializable{
     private String codigotipo;
     private String estado;
 
-    
+     /**
+     * get variable estado
+     * @return estado
+     */
     public String getEstado() {
         return estado;
     }
