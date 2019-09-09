@@ -21,7 +21,11 @@ public class Principal {
     public static ArrayList<ArrayList<String>> listapersona= new ArrayList();
     public static ArrayList<ArrayList<String>> listaantecedente = new ArrayList();
     public static ArrayList<ArrayList<String>> listatipo = new ArrayList();
-
+ /**
+     * metodo menú en el cual se elige las personas
+     * se pueden ver los antecedentes
+     * y el tipo de antecedente
+     */
     public void menu() throws IOException{ 
         String elije ="";
         System.out.println("1. Persona");
