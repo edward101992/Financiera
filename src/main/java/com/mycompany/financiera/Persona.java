@@ -22,8 +22,10 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 /**
- *
- * @author SuperUs
+ *  Clase Persona esta clase implemta la clase interface
+ *  y estan los datos de la persona
+ * @author Edward Ramos
+ * @author Victor Preciado
  */
 public class Persona implements Serializable{
     
@@ -94,7 +96,11 @@ public class Persona implements Serializable{
 
     public Persona() {
     }
-    
+     /**
+     * Metodo menu en este metodo se puede 
+     * registrar la persona, editar 
+     * y ver la información
+     */
      public void menu() throws IOException{
         Antecedente antecedente = new Antecedente();
         Tipo tipo = new Tipo();
@@ -127,7 +133,9 @@ public class Persona implements Serializable{
                 break;
         }
     }  
-     
+      /**
+     * Metodo registrarPersona pide los datos de la persona
+     */
     public void registrarPersona() throws IOException{
         int contador = 0; 
         boolean registrado = false;
@@ -161,7 +169,10 @@ public class Persona implements Serializable{
             menu();
         }
     }
- 
+     /**
+     * Metodo editarPersona pide los datos sirve para 
+     * cambiar los datos de la persona
+     */
     public void editarPersona() throws IOException{
         boolean encontro = false;
         System.out.println("Digite Documento");
@@ -189,7 +200,10 @@ public class Persona implements Serializable{
             System.out.println("Usuario no Registrado");        
         menu();
     }
-    
+      /**
+     * Metodo listaPersona muestra los datos de la persona
+     * registrados y modificados
+     */
     public void listaPersona() throws IOException{
         for(int i=0;i<Principal.listapersona.size();i++){
             System.out.println("Persona Numero  " + (i+1) + "  Registrada");
@@ -212,6 +226,11 @@ public class Persona implements Serializable{
         }        
          menu();
     }   
+      /**
+     * Metodo ficheroleer abre el fichero y creacion de 
+     * BufferedReader para poder
+     * hacer una lectura comoda (disponer del metodo readLine()).
+     */
     public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
@@ -219,8 +238,7 @@ public class Persona implements Serializable{
       int contador = 0;
       Principal.listapersona.clear();
       try {
-         // Apertura del fichero y creacion de BufferedReader para poder
-         // hacer una lectura comoda (disponer del metodo readLine()).
+       
          archivo = new File ("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Persona.txt");
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
@@ -249,7 +267,10 @@ public class Persona implements Serializable{
          }
       }
    }
-    
+       /**
+     * Metodo ficheroescribir vuelve a escribir los datos
+     * en el fichero 
+     */
     public void ficheroescribir(){
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -269,7 +290,7 @@ public class Persona implements Serializable{
             e.printStackTrace();
         } finally {
            try {
-           // Nuevamente aprovechamos el finally para asegurarnos que se cierra el fichero.
+          
            if (null != fichero)
               fichero.close();
            } catch (Exception e2) {
@@ -277,7 +298,10 @@ public class Persona implements Serializable{
            }
         }
     }
-    
+        /**
+     * Metodo ficherovaciar deja el fichero en blanco
+     * elimina los datos
+     */
     public void ficherovaciar(){
         File fichero = null;
         fichero = new File("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Persona.txt");
