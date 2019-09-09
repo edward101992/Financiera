@@ -8,9 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author SuperUs
+ /**
+ *  Clase principal donde esta el menú de opciones y los arrayList de la información de cada persona
+ * @author Edward Ramos
+ * @author Victor Preciado
  */
 public class Principal {
     Persona persona = new Persona();
