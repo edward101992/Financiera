@@ -47,26 +47,43 @@ public class Tipo implements Serializable{
     public String getEstado() {
         return estado;
     }
-
+     /**
+     * get variable codigotipo
+     * @param codigotipo 
+     */
     public String getCodigotipo() {
         return codigotipo;
     }
-
+      /**
+     * set variable codigotipo
+     * @param codigotipo 
+     */
     public void setCodigotipo(String codigotipo) {
         this.codigotipo = codigotipo;
     }
-
+       /**
+     * set variable estado
+     * @param estado 
+     */
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+     /**
+     * Constructor clase triangulo
+     */
     public Tipo() {
     }
-    
+     /**
+     * get variable codigoantecedente
+     * @return codigoantecedente 
+     */
     public String getCodigoantecedente() {
         return codigoantecedente;
     }
-
+      /**
+     * set variable codigoantecedente
+     * @param codigoantecedente 
+     */
     public void setCodigoantecedente(String codigoantecedente) {
         this.codigoantecedente = codigoantecedente;
     }
@@ -77,23 +94,41 @@ public class Tipo implements Serializable{
         this.nomcaracteristico = codigoantecedente;
     }
 
-
+     /**
+     * get variable descripcion
+     * @return descripcion 
+     */
     public String getDescripcion() {
         return descripcion;
     }
-
+     /**
+     * set variable descripcion
+     * @param descripcion 
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+     /**
+     * get variable nomcaracteristico
+     * @return nomcaracteristico 
+     */
     public String getNomcaracteristico() {
         return nomcaracteristico;
     }
-
+      /**
+     * set variable nomcaracteristico
+     * @param nomcaracteristico 
+     */
     public void setNomcaracteristico(String nomcaracteristico) {
         this.nomcaracteristico = nomcaracteristico;
     }
-    
+      
+      
+    /**
+     * Metodo subMenu sirve para agregar antecedentes 
+     * y eliminar antecedentes del cliente
+     */
+
     public void subMenu() throws IOException{
         ficheroleer();
         Principal princ = new Principal();
@@ -117,7 +152,10 @@ public class Tipo implements Serializable{
                 break;
         }
     }
-    
+     /**
+     * Metodo menu sirve para agregar informacion de
+     * antecedentes y estado de la persona
+     */
     public void menu() throws IOException{       
   
         boolean registrado = false;
@@ -144,7 +182,10 @@ public class Tipo implements Serializable{
             agregarDatos();
         }    
     }
-    
+      /**
+     * Metodo agregarDatos agrega el tipo de antecedente a la lista
+     * y estado de la persona
+     */
     public void agregarDatos() throws IOException{
             int contador= 0;
             if((estado.equalsIgnoreCase("p"))||((estado.equalsIgnoreCase("n")))){
@@ -164,6 +205,10 @@ public class Tipo implements Serializable{
             subMenu();      
             }
     }
+     /**
+     * Metodo ficheroleer sirve para leer
+     * el fichero creado 
+     */
     public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
@@ -196,7 +241,10 @@ public class Tipo implements Serializable{
          }
       }
    }
- 
+     /**
+     * Metodo eliminarAntecedente elimina informacion de la persona
+     * del fichero, cualquier dato
+     */
     public void eliminarAntecedente() throws IOException{
         boolean encontro = false;
         System.out.println("Digite codigo tipo de antecedente");
@@ -221,7 +269,10 @@ public class Tipo implements Serializable{
         }            
         subMenu();
     }
-    
+      /**
+     * Metodo ficheroescribir escribe informacion de la
+     * persona en el fichero modificado
+     */
     public void ficheroescribir(){
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -249,7 +300,10 @@ public class Tipo implements Serializable{
            }
         }
     }
-    
+     /**
+     * Metodo ficherovaciar deja el archivo en
+     * blanco del archivo.txt
+     */
     public void ficherovaciar(){
         File fichero = null;
         fichero = new File("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Tipo.txt");
