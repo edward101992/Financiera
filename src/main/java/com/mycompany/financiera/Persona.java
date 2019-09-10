@@ -35,14 +35,20 @@ public class Persona implements Serializable{
     private String edad;
     private String genero;
 
+    /**
+     * get varibale genero
+     * @return genero
+     */
     public String getGenero() {
         return genero;
     }
-
+    /**
+     * set variable genero
+     * @param genero 
+     */
     public void setGenero(String genero) {
         this.genero = genero;
     }
-
     /**
      * get variable nombre
      * @return nombre
@@ -50,7 +56,6 @@ public class Persona implements Serializable{
     public String getNombre() {
         return nombre;
     }
-
     /**
      * set variable nombre
      * @param nombre 
@@ -86,26 +91,33 @@ public class Persona implements Serializable{
     public void setEdad(String edad) {
         this.edad = edad;
     }
-
+    /**
+     * Constructor clase persona
+     * @param nombre nombre de la persona
+     * @param cedula cedula de la persona
+     * @param edad edad de la persona
+     * @param genero genero de la persona
+     */
     public Persona(String nombre, String cedula, String edad, String genero) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.edad = edad;
         this.genero = genero;
     }
-
+    /**
+     * Contructor clase persona
+     */
     public Persona() {
     }
-     /**
+    
+    /**
      * Metodo menu en este metodo se puede 
      * registrar la persona, editar 
      * y ver la información
+     * @throws IOException 
      */
+    
      public void menu() throws IOException{
-    //    Antecedente antecedente = new Antecedente();
-    //    Tipo tipo = new Tipo();
-    //    antecedente.ficheroleer();
-    //    tipo.ficheroleer();
         ficheroleer();
         Principal principal = new Principal();
         String elije="";
@@ -137,9 +149,11 @@ public class Persona implements Serializable{
                 break;
         }
     }  
-      /**
-     * Metodo registrarPersona pide los datos de la persona
-     */
+     
+     /**
+      * Metodo registrar persona captura los datos de la persona y los guarda en un arraylist
+      * @throws IOException 
+      */
     public void registrarPersona() throws IOException{
         int contador = 0; 
         boolean registrado = false;
@@ -173,10 +187,10 @@ public class Persona implements Serializable{
             menu();
         }
     }
-     /**
-     * Metodo editarPersona pide los datos sirve para 
-     * cambiar los datos de la persona
-     */
+   /**
+    * Metodo editar persona donde se ingresa la cedula y se editan los datos
+    * @throws IOException 
+    */
     public void editarPersona() throws IOException{
         boolean encontro = false;
         System.out.println("Digite Documento");
@@ -204,11 +218,10 @@ public class Persona implements Serializable{
             System.out.println("Usuario no Registrado");        
         menu();
     }
-      /**
-     * Metodo listaPersona muestra los datos de la persona
-     * registrados y modificados
+    /**
+     * Metodo reportePersona busca los reportes por cedula de cada persona
+     * @throws IOException 
      */
-    
     public void reportePersona() throws IOException{
         System.out.println("Digite cedula de la persona: ");
         cedula = sc.nextLine();
@@ -234,7 +247,10 @@ public class Persona implements Serializable{
         }
         menu();
     }
-    
+    /**
+     * Metodo listaPersona lista todas las personas y los antecedentes y tipos de antecedentes
+     * @throws IOException 
+     */
     public void listaPersona() throws IOException{
         for(int i=0;i<Principal.listapersona.size();i++){
             System.out.println("Persona Numero  " + (i+1) + "  Registrada");
@@ -257,11 +273,10 @@ public class Persona implements Serializable{
         }        
          menu();
     }   
-      /**
-     * Metodo ficheroleer abre el fichero y creacion de 
-     * BufferedReader para poder
-     * hacer una lectura comoda (disponer del metodo readLine()).
+     /**
+     * Metodo ficheroleer abre el fichero y lee su informacion
      */
+
     public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
@@ -272,11 +287,9 @@ public class Persona implements Serializable{
          archivo = new File ("Persona.txt");
          if(!archivo.exists()){
                archivo.createNewFile();
-           }
-         
+         }         
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
-
          // Lectura del fichero
          String linea;
          while((linea=br.readLine())!=null){
@@ -291,7 +304,6 @@ public class Persona implements Serializable{
       catch(Exception e){
          e.printStackTrace();
       }finally{
-         // En el finally se cierra el fichero
          try{                    
             if( null != fr ){   
                fr.close();     
@@ -301,7 +313,7 @@ public class Persona implements Serializable{
          }
       }
    }
-       /**
+     /**
      * Metodo ficheroescribir vuelve a escribir los datos
      * en el fichero 
      */
@@ -323,8 +335,7 @@ public class Persona implements Serializable{
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           try {
-          
+           try {     
            if (null != fichero)
               fichero.close();
            } catch (Exception e2) {
@@ -332,9 +343,9 @@ public class Persona implements Serializable{
            }
         }
     }
-        /**
+     /**
      * Metodo ficherovaciar deja el fichero en blanco
-     * elimina los datos
+     * 
      */
     public void ficherovaciar(){
         File fichero = null;

@@ -23,16 +23,7 @@ import java.util.Scanner;
  * @author Victor Preciado
  */
 public class Tipo implements Serializable{
-      /**
-     * variable descripcion contiene la descripcion de la persona
-     * variable nomcaracteristico guarda el nombre caracteristico del 
-     * antecedente
-     * variable codigoantecedente guarda el codigo del tipo 
-     * de antecedente
-     * variable codigotipo guarda el codigo de antecedente
-     * variable estado guarda el estado de la persona
-     * positivo o negativo
-     */
+
     Scanner sc = new Scanner(System.in);
     private String descripcion;
     private String nomcaracteristico;
@@ -47,9 +38,10 @@ public class Tipo implements Serializable{
     public String getEstado() {
         return estado;
     }
-     /**
+
+    /**
      * get variable codigotipo
-     * @param codigotipo 
+     * @return codigotipo
      */
     public String getCodigotipo() {
         return codigotipo;
@@ -124,9 +116,10 @@ public class Tipo implements Serializable{
     }
       
       
+
     /**
-     * Metodo subMenu sirve para agregar antecedentes 
-     * y eliminar antecedentes del cliente
+     * Metodo subMenu en el cual el usuario elije si eliminar o agregar antecedente
+     * @throws IOException 
      */
 
     public void subMenu() throws IOException{
@@ -152,9 +145,10 @@ public class Tipo implements Serializable{
                 break;
         }
     }
-     /**
-     * Metodo menu sirve para agregar informacion de
-     * antecedentes y estado de la persona
+ 
+    /**
+     * Metodo menu el cual captura los datos del antecedente
+     * @throws IOException 
      */
     public void menu() throws IOException{       
         boolean registrado = false;
@@ -181,12 +175,11 @@ public class Tipo implements Serializable{
             verificarAntecedente();
         }    
     }
-      /**
-     * Metodo agregarDatos agrega el tipo de antecedente a la lista
-     * y estado de la persona
+
+    /**
+     * Metodo verificarAntecedente verifica si el antecedente existe
+     * @throws IOException 
      */
-    
-    
     public void verificarAntecedente() throws IOException{  
         boolean repite = false;
         for (ArrayList<String> listaantecedente : Principal.listaantecedente) {
@@ -195,14 +188,17 @@ public class Tipo implements Serializable{
             } 
         }
         if(repite){
-            agregarDatos();
+            agregarDato();
         }else{
             System.out.println("Antecedente no registrado");
             subMenu();
         }
     }
-    
-    public void agregarDatos() throws IOException{
+    /**
+     * Metodo agregarDato agrega los datos  la lista
+     * @throws IOException 
+     */
+    public void agregarDato() throws IOException{
             int contador= 0;
             if((estado.equalsIgnoreCase("p"))||((estado.equalsIgnoreCase("n")))){
             contador = (Principal.listatipo.size());
@@ -222,9 +218,9 @@ public class Tipo implements Serializable{
             }
     }
      /**
-     * Metodo ficheroleer sirve para leer
-     * el fichero creado 
+     * Metodo ficheroleer abre el fichero y lee su informacion
      */
+
     public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
@@ -289,9 +285,9 @@ public class Tipo implements Serializable{
         }            
         subMenu();
     }
-      /**
-     * Metodo ficheroescribir escribe informacion de la
-     * persona en el fichero modificado
+     /**
+     * Metodo ficheroescribir vuelve a escribir los datos
+     * en el fichero 
      */
     public void ficheroescribir(){
         FileWriter fichero = null;
@@ -321,8 +317,8 @@ public class Tipo implements Serializable{
         }
     }
      /**
-     * Metodo ficherovaciar deja el archivo en
-     * blanco del archivo.txt
+     * Metodo ficherovaciar deja el fichero en blanco
+     * 
      */
     public void ficherovaciar(){
         File fichero = null;

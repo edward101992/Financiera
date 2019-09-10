@@ -24,42 +24,27 @@ import java.util.Scanner;
  * @author Victor Preciado
  */
 public class Antecedente implements Serializable{
-     /**
-     * variable codigo guarda codigo de antecedente
-     * variable fecha guarda la fecha del antecedente
-     * variable descripcion guarda descriocion del antecedente
-     * variable persona guarda antecedentes
-     */
     Scanner sc = new Scanner(System.in);
     private String codigo;
     private String fecha = "dd/MM/yyyy";
     private String descripcion;
     private String persona;
-    private boolean repite;
-    private Date fecha2;
 
-    public boolean isRepite() {
-        return repite;
+    /**
+     * Constructor clase antecedente
+     * @param codigo codigo del antecedente
+     * @param descripcion descripcion del antecedente
+     * @param persona cedula de la persona
+     */
+    public Antecedente(String codigo, String descripcion, String persona) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.persona = persona;
     }
 
-    public void setRepite(boolean repite) {
-        this.repite = repite;
+    public Antecedente() {
     }
     
-     /**
-     * get variable sc
-     * @return sc
-     */
-    public Scanner getSc() {
-        return sc;
-    }
-     /**
-     * set variable sc
-     * @param sc 
-     */
-    public void setSc(Scanner sc) {
-        this.sc = sc;
-    }
      /**
      * get variable codigo
      * @return codigo
@@ -142,13 +127,14 @@ public class Antecedente implements Serializable{
                 break;              
         }
     }
-     /**
+ 
+    /**
      * Metodo agregarAntecedente en el cual el usuario digita los datos
      * y compruba el registro
+     * @throws IOException 
      */
     public void agregarAntecedente() throws IOException{
         boolean registrado = false;
-        String fech="";
         System.out.println("Digite Documento de Persona: ");
         persona = sc.nextLine();
         System.out.println("Digite codigo de Antecedente: ");
@@ -169,11 +155,11 @@ public class Antecedente implements Serializable{
             verificarPersona();
         }         
     }   
-      /**
-     * Metodo agregarDatos en este metodo el antecedente
-     * es agregado a la persona
+
+    /**
+     * Metodo verificar persona verifica si la persona existe
+     * @throws IOException 
      */
-      
     public void verificarPersona() throws IOException{
         boolean registrado=false;
         for (int i=0;i<Principal.listapersona.size();i++) {
@@ -188,7 +174,10 @@ public class Antecedente implements Serializable{
              menu();
         }
     }
-       
+    /**
+     * Metodo agregarDatos agrega los datos de la persona
+     * @throws IOException 
+     */   
     public void agregarDatos() throws IOException{
             int contador =0;
            contador = (Principal.listaantecedente.size());
@@ -202,29 +191,23 @@ public class Antecedente implements Serializable{
             ficheroescribir();
             menu();
     }
-       /**
-     * Metodo ficheroleer en el cual se crea el archivo
-     * En el finally cerramos el fichero, para asegurarnos
-     * que se cierra tanto si todo va bien como si salta 
-     * una excepcion.
-     * es agregado a la persona
+     /**
+     * Metodo ficheroleer abre el fichero y lee su informacion
      */
+
    public  void ficheroleer() {
       File archivo = null;
       FileReader fr = null;
       BufferedReader br = null;
       int contador = 0;
       Principal.listaantecedente.clear();
-      try {
-       
+      try {    
          archivo = new File ("Antecedente.txt");
          if(!archivo.exists()){
                archivo.createNewFile();
          }
          fr = new FileReader (archivo);
-         br = new BufferedReader(fr);
-
-      
+         br = new BufferedReader(fr);     
          String linea;
          while((linea=br.readLine())!=null){
              Principal.listaantecedente.add(new ArrayList<String>());
@@ -248,7 +231,10 @@ public class Antecedente implements Serializable{
          }
       }
    }
-  
+    /**
+     * Metodo ficheroescribir vuelve a escribir los datos
+     * en el fichero 
+     */
        public void ficheroescribir(){
         FileWriter fichero = null;
         PrintWriter pw = null;
@@ -276,9 +262,9 @@ public class Antecedente implements Serializable{
            }
         }
     }
-      /**
-     * Metodo ficherovaciar en este metodo el fichero 
-     *quedara vacio y se creara un nuevo archivo
+     /**
+     * Metodo ficherovaciar deja el fichero en blanco
+     * 
      */
     public void ficherovaciar(){
         File fichero = null;
