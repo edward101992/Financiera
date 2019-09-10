@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -35,6 +36,7 @@ public class Antecedente implements Serializable{
     private String descripcion;
     private String persona;
     private boolean repite;
+    private Date fecha2;
 
     public boolean isRepite() {
         return repite;
@@ -146,6 +148,7 @@ public class Antecedente implements Serializable{
      */
     public void agregarAntecedente() throws IOException{
         boolean registrado = false;
+        String fech="";
         System.out.println("Digite Documento de Persona: ");
         persona = sc.nextLine();
         System.out.println("Digite codigo de Antecedente: ");

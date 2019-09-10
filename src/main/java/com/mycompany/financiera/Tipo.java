@@ -160,11 +160,7 @@ public class Tipo implements Serializable{
         boolean registrado = false;
         System.out.println("**********   Tipo Antecedentes   *********");
         System.out.println("Digite codigo Antecedente");
-        codigoantecedente = sc.nextLine();
-        if(!verificarAntecedente()){
-            System.out.println("Antecedente no registrado");
-            subMenu();
-        }          
+        codigoantecedente = sc.nextLine();    
         System.out.println("Digite codigo Tipo Antecedente");
         codigotipo = sc.nextLine();
         System.out.println("Digite Descripcion Tipo antecedente: ");
@@ -182,7 +178,7 @@ public class Tipo implements Serializable{
             System.out.println("El tipo de antecedente ya esta registrado");
             subMenu();
         }else{
-            agregarDatos();
+            verificarAntecedente();
         }    
     }
       /**
@@ -191,16 +187,19 @@ public class Tipo implements Serializable{
      */
     
     
-    public boolean verificarAntecedente(){  
+    public void verificarAntecedente() throws IOException{  
         boolean repite = false;
         for (ArrayList<String> listaantecedente : Principal.listaantecedente) {
             if (listaantecedente.get(0).equals(codigoantecedente)) {
                 repite = true;
-            } else {
-                repite = false;
-            }
+            } 
         }
-        return repite;
+        if(repite){
+            agregarDatos();
+        }else{
+            System.out.println("Antecedente no registrado");
+            subMenu();
+        }
     }
     
     public void agregarDatos() throws IOException{
@@ -280,12 +279,13 @@ public class Tipo implements Serializable{
                         listmod.add("");
                         Principal.listatipo.set(i, listmod);
                         encontro= true;
-                         System.out.println("Entro al forrrr");
                         ficheroescribir();
                      }       
                 }
         if(!encontro){
             System.out.println("Tipo de antecedente no Registrado o Antecedente Positivo"); 
+        }else{
+            System.out.println("Tipo de antecedente  " + codigotipo + "  eliminado");
         }            
         subMenu();
     }

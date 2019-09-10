@@ -112,7 +112,8 @@ public class Persona implements Serializable{
         System.out.println("**********   Persona   *********");
         System.out.println("1. Registrar Persona");
         System.out.println("2. Editar Persona");
-        System.out.println("3. Lista de Personas");
+        System.out.println("3. Reporte de Personas");
+        System.out.println("4. Reporte por Persona");
         System.out.println("0. ATRAS");
         elije=sc.nextLine();     
            switch(elije){
@@ -124,6 +125,9 @@ public class Persona implements Serializable{
                 break;
             case "3":
                 listaPersona();
+                break;
+            case "4":
+                reportePersona();
                 break;
              case "0":
                 principal.menu();
@@ -204,6 +208,33 @@ public class Persona implements Serializable{
      * Metodo listaPersona muestra los datos de la persona
      * registrados y modificados
      */
+    
+    public void reportePersona() throws IOException{
+        System.out.println("Digite cedula de la persona: ");
+        cedula = sc.nextLine();
+        for(int i =0;i<Principal.listapersona.size();i++){
+            if(Principal.listapersona.get(i).get(1).equals(cedula)){
+                System.out.println("Nombre: " + Principal.listapersona.get(i).get(0));
+                System.out.println("Cedula : " + Principal.listapersona.get(i).get(1));
+                System.out.println("Edad : " + Principal.listapersona.get(i).get(2));
+                System.out.println("Genero : " + Principal.listapersona.get(i).get(3)); 
+                for(int j=0;j<Principal.listaantecedente.size();j++){
+                if((Principal.listaantecedente.get(j).get(1).equals(Principal.listapersona.get(i).get(1)))){
+                    System.out.println("****** Antecedente  " + (j+1) + "  Registrado");
+                    System.out.println("Codigo Antecedente: " + Principal.listaantecedente.get(j).get(0)+ "  Fecha : " + Principal.listaantecedente.get(j).get(2) + "  Descripcion : " + Principal.listaantecedente.get(j).get(3));                    
+                           for(int k=0;k<Principal.listatipo.size();k++){
+                                if(Principal.listatipo.get(k).get(0).equals(Principal.listaantecedente.get(j).get(0))){
+                                    System.out.println("*** Tipo Antecedente " + (k+1) + "  Registraddo");
+                                    System.out.println("Codigo tipo Descripcion:  "+ Principal.listatipo.get(k).get(1) + "  Descripcion :" + Principal.listatipo.get(k).get(2) + "  Nombre Caracteristico :" + Principal.listatipo.get(k).get(3) + "  Estado : " + Principal.listatipo.get(k).get(4));
+                                }
+                            }
+                     }
+                }
+            }
+        }
+        menu();
+    }
+    
     public void listaPersona() throws IOException{
         for(int i=0;i<Principal.listapersona.size();i++){
             System.out.println("Persona Numero  " + (i+1) + "  Registrada");

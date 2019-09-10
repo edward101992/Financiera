@@ -23,3 +23,8 @@ Proteccion
 12/01/2001
 Seguro Social
 .
+7
+300
+19/03/1992
+Davivienda
+.
