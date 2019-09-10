@@ -34,6 +34,16 @@ public class Antecedente implements Serializable{
     private String fecha = "dd/MM/yyyy";
     private String descripcion;
     private String persona;
+    private boolean repite;
+
+    public boolean isRepite() {
+        return repite;
+    }
+
+    public void setRepite(boolean repite) {
+        this.repite = repite;
+    }
+    
      /**
      * get variable sc
      * @return sc
@@ -145,7 +155,7 @@ public class Antecedente implements Serializable{
         System.out.println("Digite Descripcion :");
         descripcion = sc.nextLine();
         for(int i=0;i<Principal.listaantecedente.size();i++){
-            if(Principal.listaantecedente.get(i).get(1).equals(codigo)){
+            if(Principal.listaantecedente.get(i).get(0).equals(codigo)){
                registrado=true;
              }
         }
@@ -153,13 +163,29 @@ public class Antecedente implements Serializable{
             System.out.println("Antecedente ya esta registrado");
             menu();
         }else{
-            agregarDatos();
+            verificarPersona();
         }         
     }   
       /**
      * Metodo agregarDatos en este metodo el antecedente
      * es agregado a la persona
      */
+      
+    public void verificarPersona() throws IOException{
+        boolean registrado=false;
+        for (int i=0;i<Principal.listapersona.size();i++) {
+            if (Principal.listapersona.get(i).get(1).equals(persona)) {
+                registrado = true;
+            }
+        }
+        if(registrado){
+            agregarDatos();
+        }else{
+             System.out.println("Usuario No registrado");
+             menu();
+        }
+    }
+       
     public void agregarDatos() throws IOException{
             int contador =0;
            contador = (Principal.listaantecedente.size());
@@ -188,7 +214,10 @@ public class Antecedente implements Serializable{
       Principal.listaantecedente.clear();
       try {
        
-         archivo = new File ("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Antecedente.txt");
+         archivo = new File ("Antecedente.txt");
+         if(!archivo.exists()){
+               archivo.createNewFile();
+         }
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
 
@@ -222,7 +251,7 @@ public class Antecedente implements Serializable{
         PrintWriter pw = null;
         try
         {
-            fichero = new FileWriter("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Antecedente.txt");
+            fichero = new FileWriter("Antecedente.txt");
             pw = new PrintWriter(fichero);
             
             for(int i=0;i<Principal.listaantecedente.size();i++){
@@ -250,7 +279,7 @@ public class Antecedente implements Serializable{
      */
     public void ficherovaciar(){
         File fichero = null;
-        fichero = new File("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Antecedente.txt");
+        fichero = new File("Antecedente.txt");
         fichero.delete();
         try
         {

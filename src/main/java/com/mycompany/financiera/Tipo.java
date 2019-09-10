@@ -157,11 +157,14 @@ public class Tipo implements Serializable{
      * antecedentes y estado de la persona
      */
     public void menu() throws IOException{       
-  
         boolean registrado = false;
         System.out.println("**********   Tipo Antecedentes   *********");
         System.out.println("Digite codigo Antecedente");
         codigoantecedente = sc.nextLine();
+        if(!verificarAntecedente()){
+            System.out.println("Antecedente no registrado");
+            subMenu();
+        }          
         System.out.println("Digite codigo Tipo Antecedente");
         codigotipo = sc.nextLine();
         System.out.println("Digite Descripcion Tipo antecedente: ");
@@ -169,11 +172,11 @@ public class Tipo implements Serializable{
         System.out.println("Digite nombre Caracteristico Tipo antecedente: ");
         nomcaracteristico=sc.nextLine();
         System.out.println("Digite Estado P-N :");
-        estado = sc.nextLine();
-        for(int i=0;i<Principal.listatipo.size();i++){
-            if(Principal.listatipo.get(i).get(1).equals(codigotipo)){
-               registrado=true;
-             }
+        estado = sc.nextLine();     
+        for (ArrayList<String> listatipo : Principal.listatipo) {
+            if (listatipo.get(1).equals(codigotipo)) {
+                registrado=true;
+            }
         }
         if(registrado){
             System.out.println("El tipo de antecedente ya esta registrado");
@@ -186,6 +189,20 @@ public class Tipo implements Serializable{
      * Metodo agregarDatos agrega el tipo de antecedente a la lista
      * y estado de la persona
      */
+    
+    
+    public boolean verificarAntecedente(){  
+        boolean repite = false;
+        for (ArrayList<String> listaantecedente : Principal.listaantecedente) {
+            if (listaantecedente.get(0).equals(codigoantecedente)) {
+                repite = true;
+            } else {
+                repite = false;
+            }
+        }
+        return repite;
+    }
+    
     public void agregarDatos() throws IOException{
             int contador= 0;
             if((estado.equalsIgnoreCase("p"))||((estado.equalsIgnoreCase("n")))){
@@ -216,7 +233,10 @@ public class Tipo implements Serializable{
       int contador = 0;
       Principal.listatipo.clear();
       try {
-         archivo = new File ("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Tipo.txt");
+         archivo = new File ("Tipo.txt");
+         if(!archivo.exists()){
+               archivo.createNewFile();
+           }
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
          String linea;
@@ -278,7 +298,7 @@ public class Tipo implements Serializable{
         PrintWriter pw = null;
         try
         {
-            fichero = new FileWriter("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Tipo.txt");
+            fichero = new FileWriter("Tipo.txt");
             pw = new PrintWriter(fichero);
             
             for(int i=0;i<Principal.listatipo.size();i++){
@@ -306,7 +326,7 @@ public class Tipo implements Serializable{
      */
     public void ficherovaciar(){
         File fichero = null;
-        fichero = new File("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Tipo.txt");
+        fichero = new File("Tipo.txt");
         fichero.delete();
         try
         {

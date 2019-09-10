@@ -1,0 +1,15 @@
+Edward Ramos
+100
+27
+masculino
+.
+Arturo Giron
+200
+18
+masculino
+.
+Clara Ines Baez
+300
+60
+fem
+.

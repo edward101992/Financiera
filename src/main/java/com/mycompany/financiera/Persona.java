@@ -102,10 +102,10 @@ public class Persona implements Serializable{
      * y ver la información
      */
      public void menu() throws IOException{
-        Antecedente antecedente = new Antecedente();
-        Tipo tipo = new Tipo();
-        antecedente.ficheroleer();
-        tipo.ficheroleer();
+    //    Antecedente antecedente = new Antecedente();
+    //    Tipo tipo = new Tipo();
+    //    antecedente.ficheroleer();
+    //    tipo.ficheroleer();
         ficheroleer();
         Principal principal = new Principal();
         String elije="";
@@ -238,8 +238,11 @@ public class Persona implements Serializable{
       int contador = 0;
       Principal.listapersona.clear();
       try {
-       
-         archivo = new File ("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Persona.txt");
+         archivo = new File ("Persona.txt");
+         if(!archivo.exists()){
+               archivo.createNewFile();
+           }
+         
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
 
@@ -276,7 +279,7 @@ public class Persona implements Serializable{
         PrintWriter pw = null;
         try
         {
-            fichero = new FileWriter("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Persona.txt");
+            fichero = new FileWriter("Persona.txt");
             pw = new PrintWriter(fichero);
             
             for(int i=0;i<Principal.listapersona.size();i++){
@@ -304,7 +307,7 @@ public class Persona implements Serializable{
      */
     public void ficherovaciar(){
         File fichero = null;
-        fichero = new File("C:\\Users\\SuperUs\\Documents\\NetBeansProjects\\Financiera\\src\\main\\resources\\Persona.txt");
+        fichero = new File("Persona.txt");
         fichero.delete();
         try
         {

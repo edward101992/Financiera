@@ -28,6 +28,12 @@ public class Principal {
      */
     public void menu() throws IOException{ 
         String elije ="";
+        Persona persona = new Persona();
+        Antecedente antecedente = new Antecedente();
+        Tipo tipo = new Tipo();
+        persona.ficheroleer();
+        antecedente.ficheroleer();
+        tipo.ficheroleer();
         System.out.println("1. Persona");
         System.out.println("2. Antecedentes");
         System.out.println("3. Tipo de Antecedentes");
@@ -47,4 +53,3 @@ public class Principal {
             }
     }     
 }
-
